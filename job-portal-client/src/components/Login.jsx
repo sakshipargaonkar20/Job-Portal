@@ -168,10 +168,7 @@ function App() {
                 </button>
               </form>
             )}
-            <div className="text-center">
-              <p>or sign up with:</p>
-              {/* Social login buttons */}
-            </div>
+            
             {/* Display login success message */}
             {loginStatus === "loginSuccess" && (
               <p className="text-green-500 mb-4">Login successful!</p>
