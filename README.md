@@ -1,3 +1,4 @@
 # Mern Job Portal 
-![Screenshot (657)](https://github.com/sakshipargaonkar20/Job-Portal/assets/140840936/6109c6c9-ef84-47b0-b29d-8d63171b50f4)
+![Screenshot (658)](https://github.com/sakshipargaonkar20/Job-Portal/assets/140840936/f01bab10-ef98-4ff5-99c5-d795f82f4dd5)
+
 
