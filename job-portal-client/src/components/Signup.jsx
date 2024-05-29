@@ -1,113 +1,148 @@
 import React, { useState } from "react";
 
-const Signup = () => {
-  const [name, setName] = useState("");
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const [repeatPassword, setRepeatPassword] = useState("");
+function App() {
+  const [formData, setFormData] = useState({
+    firstName: "",
+    lastName: "",
+    email: "",
+    password: "",
+    subscribe: false
+  });
+
+  const [loginStatus, setLoginStatus] = useState(null);
   const [error, setError] = useState("");
 
-  const handleSubmit = (e) => {
+  // Function to handle form submission for signup
+  const handleSignup = (e) => {
     e.preventDefault();
-    if (!name.trim()) {
-      setError("Please enter your name.");
-    } else if (!email.trim()) {
-      setError("Please enter your email.");
-    } else if (!password.trim()) {
-      setError("Please enter your password.");
-    } else if (password !== repeatPassword) {
-      setError("Passwords do not match.");
-    } else {
-      // Perform signup logic
-      setError("Sign up successful!");
+    if (!formData.email.trim() || !formData.password.trim() || !formData.firstName.trim() || !formData.lastName.trim()) {
+      setError("Please fill in all fields.");
+      return;
     }
+    // Simulate successful signup (you can replace this with actual signup logic)
+    console.log("Signup successfully");
+    setLoginStatus("signupSuccess"); // Set signup status to success
+    setError(""); // Clear any previous errors
+  };
+
+  // Function to handle logout
+  const handleLogout = () => {
+    setFormData({
+      firstName: "",
+      lastName: "",
+      email: "",
+      password: "",
+      subscribe: false
+    });
+    setLoginStatus(null);
+    setError("");
+    console.log("Logout successfully");
   };
 
   return (
-    <section className="min-h-screen flex items-center justify-center bg-gray-100">
-      <div className="container mx-auto max-w-2xl">
-        <div className="bg-white p-8 rounded-lg shadow-md md:flex">
-          <div className="md:w-1/2 md:pr-8">
-            <h1 className="text-3xl font-bold mb-6">Sign up</h1>
-            <form className="space-y-4" onSubmit={handleSubmit}>
-              <div className="flex items-center space-x-4 mb-4">
-                <i className="fas fa-user fa-lg text-gray-600"></i>
-                <div className="flex-1">
-                  <input
-                    type="text"
-                    id="formName"
-                    className="w-full p-2 border-b border-gray-300 focus:outline-none focus:border-blue-500"
-                    placeholder="Your Name"
-                    value={name}
-                    onChange={(e) => setName(e.target.value)}
-                  />
-                </div>
-              </div>
+    <div className="min-h-screen flex items-center justify-center p-4 bg-gradient-to-r from-blue-500 to-green-500">
+      <div className="md:flex md:items-center md:justify-between w-full md:w-2/3 lg:w-1/2">
+        <div className="text-center md:text-left mb-8 md:mb-0 text-white md:w-1/2">
+          <h1 className="my-5 text-5xl font-bold tracking-tight">
+            The best offer <br />
+            <span className="text-gray-300">for your business</span>
+          </h1>
 
-              <div className="flex items-center space-x-4 mb-4">
-                <i className="fas fa-envelope fa-lg text-gray-600"></i>
-                <div className="flex-1">
-                  <input
-                    type="email"
-                    id="formEmail"
-                    className="w-full p-2 border-b border-gray-300 focus:outline-none focus:border-blue-500"
-                    placeholder="Your Email"
-                    value={email}
-                    onChange={(e) => setEmail(e.target.value)}
-                  />
-                </div>
-              </div>
+          <p className="text-gray-500">
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Eveniet,
+            itaque accusantium odio, soluta, corrupti aliquam quibusdam tempora
+            at cupiditate quis eum maiores libero veritatis? Dicta facilis sint
+            aliquid ipsum atque?
+          </p>
+        </div>
 
-              <div className="flex items-center space-x-4 mb-4">
-                <i className="fas fa-lock fa-lg text-gray-600"></i>
-                <div className="flex-1">
-                  <input
-                    type="password"
-                    id="formPassword"
-                    className="w-full p-2 border-b border-gray-300 focus:outline-none focus:border-blue-500"
-                    placeholder="Password"
-                    value={password}
-                    onChange={(e) => setPassword(e.target.value)}
-                  />
-                </div>
-              </div>
+        <div className="relative w-full md:w-1/2">
+          <div
+            id="radius-shape-1"
+            className="absolute rounded-circle shadow-5"
+          ></div>
+          <div id="radius-shape-2" className="absolute shadow-5"></div>
 
-              <div className="flex items-center space-x-4 mb-4">
-                <i className="fas fa-key fa-lg text-gray-600"></i>
-                <div className="flex-1">
-                  <input
-                    type="password"
-                    id="formRepeatPassword"
-                    className="w-full p-2 border-b border-gray-300 focus:outline-none focus:border-blue-500"
-                    placeholder="Repeat Password"
-                    value={repeatPassword}
-                    onChange={(e) => setRepeatPassword(e.target.value)}
-                  />
-                </div>
-              </div>
-
-              <div className="flex justify-center">
+          <div className="bg-white p-8 rounded-lg shadow-md">
+            {loginStatus === "signupSuccess" ? (
+              <div>
+                <p className="text-green-500 mb-4">Signup successful!</p>
+                
                 <button
-                  type="submit"
-                  className="bg-blue-500 text-white py-2 px-4 rounded-md hover:bg-blue-600 focus:outline-none focus:ring focus:border-blue-300"
+                  onClick={handleLogout}
+                  className="w-full mb-4 bg-red-500 text-white py-2 rounded-md"
                 >
-                  Register
+                  Logout
                 </button>
               </div>
-              {error && <p className="text-red-500">{error}</p>}
-            </form>
-          </div>
-          <div className="md:w-1/2 md:pl-8">
-            <img
-              src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-registration/draw1.webp"
-              className="w-full h-auto"
-              alt="Sample image"
-            />
+            ) : (
+              <form onSubmit={handleSignup}>
+                <div className="mb-4 grid grid-cols-2 gap-4">
+                  <input
+                    className="border-b-2 p-2 outline-none focus:border-blue-500"
+                    placeholder="First name"
+                    type="text"
+                    value={formData.firstName}
+                    onChange={(e) =>
+                      setFormData({ ...formData, firstName: e.target.value })
+                    }
+                  />
+                  <input
+                    className="border-b-2 p-2 outline-none focus:border-blue-500"
+                    placeholder="Last name"
+                    type="text"
+                    value={formData.lastName}
+                    onChange={(e) =>
+                      setFormData({ ...formData, lastName: e.target.value })
+                    }
+                  />
+                </div>
+                <input
+                  className="mb-4 border-b-2 p-2 outline-none focus:border-blue-500"
+                  placeholder="Email"
+                  type="email"
+                  value={formData.email}
+                  onChange={(e) =>
+                    setFormData({ ...formData, email: e.target.value })
+                  }
+                />
+                <input
+                  className="mb-4 border-b-2 p-2 outline-none focus:border-blue-500"
+                  placeholder="Password"
+                  type="password"
+                  value={formData.password}
+                  onChange={(e) =>
+                    setFormData({ ...formData, password: e.target.value })
+                  }
+                />
+                {error && <p className="text-red-500 mb-4">{error}</p>}
+                <div className="flex items-center mb-4">
+                  <input
+                    id="flexCheckDefault"
+                    type="checkbox"
+                    className="mr-2"
+                    checked={formData.subscribe}
+                    onChange={(e) =>
+                      setFormData({ ...formData, subscribe: e.target.checked })
+                    }
+                  />
+                  <label htmlFor="flexCheckDefault" className="text-gray-500">
+                    Subscribe to our newsletter
+                  </label>
+                </div>
+                <button
+                  type="submit"
+                  className="w-full mb-4 bg-blue-500 text-white py-2 rounded-md"
+                >
+                  Sign Up
+                </button>
+              </form>
+            )}
           </div>
         </div>
       </div>
-    </section>
+    </div>
   );
-};
+}
 
-export default Signup;
+export default App;
