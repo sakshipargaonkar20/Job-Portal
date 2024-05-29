@@ -12,9 +12,8 @@ app.use(cors());
 
 // ....................mongodb atlas setup.........................
 
-DB_USER ="sakshipargaonkar2012001"
-DB_PASSWORD = "CosrKQaIB0sS1Ljb"
-
+// user: sakshipargaonkar2012001
+// password: CosrKQaIB0sS1Ljb
 const { MongoClient, ServerApiVersion, ObjectId } = require("mongodb");
 const uri = `mongodb+srv://${process.env.DB_USER}:${process.env.DB_PASSWORD}@job-portal.thkocqh.mongodb.net/?retryWrites=true&w=majority`;
 
